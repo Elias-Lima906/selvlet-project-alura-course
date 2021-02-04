@@ -1,10 +1,10 @@
 package br.com.zup.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import br.com.zup.gerenciador.models.Company;
 import br.com.zup.gerenciador.models.DataBase;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,7 +21,6 @@ public class NewCompanyServlet extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("Hello World!");
 
-		PrintWriter out = response.getWriter();
 		Company company = new Company();
 
 		String id = request.getParameter("id");
@@ -32,11 +31,9 @@ public class NewCompanyServlet extends HttpServlet {
 
 		DB.add(company);
 
-		out.println("<html>" + "<body>");
-
-		out.println("<h1>" + name + " cadastrado(a) com sucesso!" + "</h1>");
-
-		out.println("</html>" + "</body>");
+		RequestDispatcher rd = request.getRequestDispatcher("/confirmRegister.jsp");
+request.setAttribute("companyName", company.getName());
+		rd.forward(request, response);
 	}
 
 }
