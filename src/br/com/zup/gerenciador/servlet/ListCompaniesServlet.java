@@ -1,4 +1,4 @@
-	package br.com.zup.gerenciador.servlet;
+package br.com.zup.gerenciador.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import br.com.zup.gerenciador.models.Company;
 import br.com.zup.gerenciador.models.DataBase;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,25 +19,15 @@ public class ListCompaniesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DataBase DB = new DataBase();;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		PrintWriter out = response.getWriter();
-		
+
 		List<Company> companies = DB.getCompanies();
-		
-		out.println("<html>" + "<body>");
-		
-		out.println("<ul>");
-		
-		for (Company company : companies) {
-			out.println("<li>" + "<strong>" + company + "</strong>" + "</li>");
-		}
-		
-		out.println("</ul>");
-		
-		out.println("</html>" + "</body>");
-		
+
+		RequestDispatcher rd = request.getRequestDispatcher("/listCompanies.jsp");
+		request.setAttribute("companies", companies);
+		rd.forward(request, response);
+
 	}
 
 }
