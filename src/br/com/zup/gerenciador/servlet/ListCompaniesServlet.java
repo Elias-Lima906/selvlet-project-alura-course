@@ -1,7 +1,6 @@
 package br.com.zup.gerenciador.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import br.com.zup.gerenciador.models.Company;

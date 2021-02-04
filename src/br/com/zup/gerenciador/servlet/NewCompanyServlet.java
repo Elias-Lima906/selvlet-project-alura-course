@@ -19,7 +19,6 @@ public class NewCompanyServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Hello World!");
 
 		Company company = new Company();
 
@@ -32,7 +31,7 @@ public class NewCompanyServlet extends HttpServlet {
 		DB.add(company);
 
 		RequestDispatcher rd = request.getRequestDispatcher("/confirmRegister.jsp");
-request.setAttribute("companyName", company.getName());
+		request.setAttribute("companyName", company.getName());
 		rd.forward(request, response);
 	}
 
