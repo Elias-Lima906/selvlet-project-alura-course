@@ -1,9 +1,12 @@
 package br.com.zup.gerenciador.models;
 
+import java.util.Date;
+
 public class Company {
 
 	private Long id;
 	private String name;
+	private Date openingDate = new Date();
 
 	public Long getId() {
 		return id;
@@ -21,9 +24,17 @@ public class Company {
 		this.name = name;
 	}
 
+	public Date getOpeningDate() {
+		return openingDate;
+	}
+
+	public void setOpeningDate(Date openingDate) {
+		this.openingDate = openingDate;
+	}
+
 	@Override
 	public String toString() {
-		return "COMPANY: " + id + " INFO: " +  " Id: " + id + " Name: " + name;
+		return "COMPANY: " + id + " INFO: " + " Id: " + id + " Name: " + name + " Date: " + openingDate;
 	}
 
 }
