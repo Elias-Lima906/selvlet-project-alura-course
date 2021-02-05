@@ -19,8 +19,8 @@
 			<br/>
 		<input type="text" name="date" placeholder="Data de abertura"/> 
 			<br/>
-				<br/>
-		<input type="submit" placeholder="Cadastrar" />
+			<br/>
+		<input type="submit" value="Cadastrar" />
 
 	</form>
 </body>
