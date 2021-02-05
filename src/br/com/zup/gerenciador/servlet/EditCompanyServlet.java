@@ -21,7 +21,6 @@ public class EditCompanyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Company company = new Company();
 		DataBase DB = new DataBase();
 
 		String idParam = request.getParameter("id");
