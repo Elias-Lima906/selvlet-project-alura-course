@@ -14,20 +14,21 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.zup.gerenciador.models.Company;
 import br.com.zup.gerenciador.models.DataBase;
 
-@WebServlet("/newCompany")
-public class NewCompanyServlet extends HttpServlet {
-
+@WebServlet("/editCompany")
+public class EditCompanyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DataBase DB = new DataBase();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		Company company = new Company();
+		DataBase DB = new DataBase();
 
-		String id = request.getParameter("id");
+		String idParam = request.getParameter("id");
 		String name = request.getParameter("name");
 		String date = request.getParameter("date");
+
+		Long id = Long.valueOf(idParam);
 
 		Date openingDate = null;
 		try {
@@ -37,14 +38,12 @@ public class NewCompanyServlet extends HttpServlet {
 			throw new ServletException(e);
 		}
 
-		company.setId(Long.parseLong(id));
-		company.setName(name);
-		company.setOpeningDate(openingDate);
+		Company editedCompany = DB.getCompanyById(id);
 
-		DB.add(company);
+		editedCompany.setId(id);
+		editedCompany.setName(name);
+		editedCompany.setOpeningDate(openingDate);
 
-		request.setAttribute("companyName", company.getName());
-		
 		response.sendRedirect("listCompanies");
 	}
 

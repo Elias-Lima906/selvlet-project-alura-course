@@ -6,7 +6,7 @@ import java.util.List;
 public class DataBase {
 
 	private static List<Company> companies = new ArrayList<Company>();
-	
+
 	static {
 
 		Company companyZup = new Company();
@@ -19,7 +19,7 @@ public class DataBase {
 		companyGoogle.setName("Google");
 		companyAlura.setId(03L);
 		companyAlura.setName("Alura");
-		
+
 		DataBase.companies.add(companyZup);
 		DataBase.companies.add(companyGoogle);
 		DataBase.companies.add(companyAlura);
@@ -31,6 +31,28 @@ public class DataBase {
 
 	public List<Company> getCompanies() {
 		return DataBase.companies;
+	}
+
+	public void remove(Long id) {
+
+		for (int i = 0; i < companies.size(); i++) {
+
+			if (companies.get(i).getId() == id) {
+				companies.remove(companies.get(i));
+			}
+		}
+	}
+
+	public Company getCompanyById(Long id) {
+
+		for (Company company : companies) {
+
+			if (company.getId() == id) {
+				return company;
+			}
+		}
+
+		return null;
 	}
 
 }
